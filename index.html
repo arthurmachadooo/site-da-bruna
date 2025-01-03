@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentes de Natal</title>
+    <style>
+        /* Estilo geral */
+        body {
+            background-color: #fdf5e6;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #b22222;
+            color: #fff;
+            padding: 20px;
+            font-size: 24px;
+        }
+
+        .menu {
+            margin-top: 50px;
+        }
+
+        .botao-rosa {
+            background-color: #ff69b4;
+            color: #fff;
+            padding: 15px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .botao-rosa:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo dos presentes */
+        .presentes {
+            display: none;
+            margin: 20px auto;
+            max-width: 600px;
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+        }
+
+        .presente {
+            width: 150px;
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border: 2px solid #b22222;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .presente:hover {
+            transform: scale(1.1);
+        }
+
+        /* Estilo do recado */
+        .recado {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: #ffe4e1;
+            color: #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            font-size: 16px;
+        }
+
+        .recado p {
+            margin: 0 0 20px;
+        }
+
+        .fechar-recado {
+            background-color: #ff69b4;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .fechar-recado:hover {
+            transform: scale(1.1);
+        }
+
+        .imagem-aberta {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        Presentes de Natal para Você!
+    </header>
+
+    <div class="menu">
+        <button class="botao-rosa" onclick="mostrarPresentes()">Clique para Descobrir Seus Presentes!</button>
+    </div>
+
+    <div class="presentes">
+        <div class="presente" style="background-image: url('fotos/istockphoto-1094054972-1024x1024.jpg');" onclick="abrirPresente(this, 'Você ganhou um lindo colar! 🎁', 'fotos/Captura de tela 2025-01-02 232208.png', 'fotos/istockphoto-1043663434-1024x1024.jpg')"></div>
+        <div class="presente" style="background-image: url('fotos/istockphoto-1094054972-1024x1024.jpg');" onclick="abrirPresente(this, 'Você ganhou um gloss de mel! 💄', 'fotos/Captura de tela 2025-01-02 232432.png', 'fotos/istockphoto-1043663434-1024x1024.jpg')"></div>
+        <div class="presente" style="background-image: url('fotos/istockphoto-1094054972-1024x1024.jpg');" onclick="abrirPresente(this, 'Você ganhou um pote com 365 motivos para te amar! ❤️', 'fotos/WhatsApp Image 2025-01-02 at 23.25.57.jpeg', 'fotos/istockphoto-1043663434-1024x1024.jpg')"></div>
+    </div>
+
+    <!-- Recado -->
+    <div class="recado" id="recado">
+        <p id="mensagemRecado"></p>
+        <img id="imagemPresente" class="imagem-aberta" src="" alt="Presente aberto">
+        <button class="fechar-recado" onclick="fecharRecado()">Fechar</button>
+    </div>
+
+    <script>
+        function mostrarPresentes() {
+            document.querySelector('.presentes').style.display = 'flex';
+        }
+
+        function abrirPresente(elemento, mensagem, imagemAberta, imagemOriginal) {
+            // Substitui a imagem do presente na tela principal pela imagem do presente aberto
+            elemento.style.backgroundImage = `url('${imagemAberta}')`;
+
+            // Exibe o recado com a mensagem e a imagem do presente aberto no bilhete
+            mostrarRecado(mensagem, imagemAberta);
+        }
+
+        function mostrarRecado(mensagem, imagemAberta) {
+            const recado = document.getElementById('recado');
+            const mensagemRecado = document.getElementById('mensagemRecado');
+            const imagem = document.getElementById('imagemPresente');
+
+            mensagemRecado.textContent = mensagem;
+            imagem.src = imagemAberta;  // Exibe a imagem do presente aberto
+            recado.style.display = 'block';
+        }
+
+        function fecharRecado() {
+            const recado = document.getElementById('recado');
+            recado.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
